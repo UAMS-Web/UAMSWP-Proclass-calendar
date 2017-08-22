@@ -1,0 +1,43 @@
+ul.uamswp-proclass-calendar {
+	list-style: none;
+}
+ul.uamswp-proclass-calendar li {
+	clear:both;
+	margin-bottom: 10px;
+	display: inline-block;
+}
+ul.uamswp-proclass-calendar li span.mini-calendar {
+	width:4em;
+	text-align: center;
+	display: block;
+	float: left;
+}
+ul.uamswp-proclass-calendar li span.mini-calendar .day {
+	background-color: #9d2235;
+	width:4em;
+	color:#fff;
+	display: block;
+	line-height: 1.8em;
+	font-size: smaller;
+}
+ul.uamswp-proclass-calendar li span.mini-calendar .date {
+	background-color: #eee;
+	width:4em;
+	color:#212121;
+	display: block;
+	line-height: 3em;
+	font-size: smaller;
+}
+ul.uamswp-proclass-calendar li span.meta-info {
+	float: left;
+	margin-left: .5em;
+}
+ul.uamswp-proclass-calendar li span.meta-info .content-item-date {
+	font-size: smaller;
+}
+ul.uamswp-proclass-calendar li span.meta-info .content-item-level {
+	font-size: smaller;
+}
+ul.uamswp-proclass-calendar-list li span.content-item-date {
+	font-size: 14px;
+}
