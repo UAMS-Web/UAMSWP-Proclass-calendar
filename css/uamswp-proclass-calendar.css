@@ -6,6 +6,9 @@ ul.uamswp-proclass-calendar li {
 	margin-bottom: 10px;
 	display: inline-block;
 }
+ul.uamswp-proclass-calendar li.uamswp-proclass-calendar-mini {
+	width: 100%;
+}
 ul.uamswp-proclass-calendar li span.mini-calendar {
 	width:4em;
 	text-align: center;
