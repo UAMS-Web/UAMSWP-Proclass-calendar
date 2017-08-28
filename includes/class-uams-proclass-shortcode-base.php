@@ -209,11 +209,13 @@ class UAMS_Proclass_Shortcode_Base {
 		if(isset($options['uamswp_proclass_authentication_user']) && !empty($options['uamswp_proclass_authentication_user'])){
 			$authuser = sanitize_text_field($options['uamswp_proclass_authentication_user']);
 		} else {
+			// Set Default Value, if desired
 			$authuser = 'InsertDefaultValue';
 		}
 		if(isset($options['uamswp_proclass_authentication_pass']) && !empty($options['uamswp_proclass_authentication_pass'])){
 			$authpass = sanitize_text_field($options['uamswp_proclass_authentication_pass']);
 		} else {
+			// Set Default Value, if desired
 			$authpass = 'InsertDefaultValue';
 		}
 
