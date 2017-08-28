@@ -198,6 +198,11 @@ class UAMS_Proclass_Shortcode_Base {
 				'$filter' => "substringof('Scheduled',StatusDescription)%20eq%20true%20and%20substringof('". $location ."',ShortDescription)%20eq%20true",
 				'$orderby'=> 'StartDate',
 			), $request_url );
+		} else {
+			$request_url = add_query_arg( array(
+				'$filter' => "substringof('Scheduled',StatusDescription)%20eq%20true",
+				'$orderby'=> 'StartDate',
+			), $request_url );
 		}
 
 		return $request_url;
