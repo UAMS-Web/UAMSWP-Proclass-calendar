@@ -27,7 +27,6 @@ class UAMS_Proclass_Shortcode_Base {
 		'query' => 'programlist',
 		'count' => false,
 		'date_format' => 'F j, Y',
-		'offset' => 0,
 		'cache_bust' => '',
 	);
 

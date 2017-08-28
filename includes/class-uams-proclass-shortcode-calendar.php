@@ -48,9 +48,6 @@ class UAMS_Proclass_Shortcode_Calendar extends UAMS_Proclass_Shortcode_Base {
 	 *     @type int    $count                    The number of items to pull from a feed. Defaults to the
 	 *                                            posts_per_page setting of the remote site.
 	 *     @type string $date_format              PHP Date format for the output of the item's date.
-	 *     @type int    $offset                   The number of items to offset when displaying. Used with multiple
-	 *                                            shortcode instances where one may pull in an excerpt and another
-	 *                                            may pull in the rest of the feed as headlines.
 	 *     @type string $cache_bust               Any change to this value will clear the cache and pull fresh data.
 	 * }
 	 *
@@ -73,14 +70,10 @@ class UAMS_Proclass_Shortcode_Calendar extends UAMS_Proclass_Shortcode_Base {
 		$request = $this->build_initial_request( $site_url, $atts );
 		$request_url = $this->build_taxonomy_filters( $atts, $request['url'] );
 
-		if ( ! empty( $atts['offset'] ) ) {
-			$atts['count'] = absint( $atts['count'] ) + absint( $atts['offset'] );
-		}
-
 		if ( $atts['count'] ) {
 			$count = ( 100 < absint( $atts['count'] ) ) ? 100 : $atts['count'];
 			$request_url = add_query_arg( array(
-				'per_page' => absint( $count ),
+				'$top' => absint( $count ),
 			), $request_url );
 		}
 
