@@ -5,7 +5,7 @@ Plugin URI: -
 Description: Proclass Calendar Syndication plugin for uamscaregiving.org
 Author: uams, Todd McKee, MEd
 Author URI: http://www.uams.edu/
-Version: 1.0
+Version: 2.0
 */
 
 namespace UAMS\ProclassCalendar;
@@ -14,6 +14,8 @@ namespace UAMS\ProclassCalendar;
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+
+include_once __DIR__ . '/includes/class-uams-proclass-admin.php';
 
 add_action( 'plugins_loaded', 'UAMS\ProclassCalendar\bootstrap' );
 /**

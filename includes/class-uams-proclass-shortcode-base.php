@@ -205,12 +205,24 @@ class UAMS_Proclass_Shortcode_Base {
 
 	public function get_api_auth() {
 
+		$options = get_option( 'uamswp_proclass_settings' );
+		if(isset($options['uamswp_proclass_authentication_user']) && !empty($options['uamswp_proclass_authentication_user'])){
+			$authuser = sanitize_text_field($options['uamswp_proclass_authentication_user']);
+		} else {
+			$authuser = 'InsertDefaultValue';
+		}
+		if(isset($options['uamswp_proclass_authentication_pass']) && !empty($options['uamswp_proclass_authentication_pass'])){
+			$authpass = sanitize_text_field($options['uamswp_proclass_authentication_pass']);
+		} else {
+			$authpass = 'InsertDefaultValue';
+		}
+
 		$auth = array(
 		  'headers' => array(
-		    'Authorization' => 'Basic ' . base64_encode( INSERTUSERNAME . ':' . INSERTPASSWORD )
+		    'Authorization' => 'Basic ' . base64_encode( $authuser . ':' . $authpass )
 		  )
 		);
-
+		//echo $authuser . ':' . $authpass;
 		return $auth;
 	}
 
