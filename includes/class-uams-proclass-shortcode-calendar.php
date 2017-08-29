@@ -84,6 +84,14 @@ class UAMS_Proclass_Shortcode_Calendar extends UAMS_Proclass_Shortcode_Base {
 
 		$response = wp_remote_get( $request_url, $auth );
 
+		$options = get_option( 'uamswp_proclass_settings' );
+		if(isset($options['uamswp_proclass_authentication_acct']) && !empty($options['uamswp_proclass_authentication_acct'])){
+			$authacct = sanitize_text_field($options['uamswp_proclass_authentication_acct']);
+		} else {
+			// Set Default Value, if desired
+			$authacct = 'UAMS';
+		}
+
 		if ( ! is_wp_error( $response ) && 404 !== wp_remote_retrieve_response_code( $response ) ) {
 			$data = wp_remote_retrieve_body( $response );
 			$data = json_decode( $data );
@@ -108,7 +116,7 @@ class UAMS_Proclass_Shortcode_Calendar extends UAMS_Proclass_Shortcode_Base {
 							$offset_x++;
 							continue;
 						}
-						?><li class="uamswp-proclass-calendar-item"><a href="https://reg126.imperisoft.com/UAMS/ProgramDetail/<?php echo esc_html( $content->ID ); ?>/Registration.aspx"><?php echo esc_html( $content->title ); ?></a><br/><span class="content-item-date"><?php echo esc_html( date( $atts['date_format'], strtotime( $content->startdate ) ) ); ?></span></li><?php
+						?><li class="uamswp-proclass-calendar-item"><a href="https://reg126.imperisoft.com/<?php echo $authacct; ?>/ProgramDetail/<?php echo esc_html( $content->ID ); ?>/Registration.aspx"><?php echo esc_html( $content->title ); ?></a><br/><span class="content-item-date"><?php echo esc_html( date( $atts['date_format'], strtotime( $content->startdate ) ) ); ?></span></li><?php
 					}
 					?>
 				</ul>
@@ -128,12 +136,12 @@ class UAMS_Proclass_Shortcode_Calendar extends UAMS_Proclass_Shortcode_Base {
 						?>
 						<li class="uamswp-proclass-calendar-item">
 							<span class="content-item-thumbnail"><?php if ( $content->image ) : ?><img src="<?php echo esc_url( $content->image ); ?>"><?php endif; ?></span>
-							<span class="content-item-title"><a href="https://reg126.imperisoft.com/UAMS/ProgramDetail/<?php echo esc_html( $content->ID ); ?>/Registration.aspx"><?php echo esc_html( $content->title ); ?></a></span>
+							<span class="content-item-title"><a href="https://reg126.imperisoft.com/<?php echo $authacct; ?>/ProgramDetail/<?php echo esc_html( $content->ID ); ?>/Registration.aspx"><?php echo esc_html( $content->title ); ?></a></span>
 							<span class="content-item-metainfo">
 								<span class="content-item-date"><?php echo esc_html( date( "D", strtotime( $content->startdate ) ) ); ?> <?php echo esc_html( date( $atts['date_format'], strtotime( $content->startdate ) ) ); ?></span>
 								<span class="content-item-level">[<?php echo esc_html( $content->level ); ?>]</span>
 							</span>
-							<span class="content-item-excerpt"><?php echo wp_kses_post( $content->content ); ?> <a class="content-item-read-story" href="https://reg126.imperisoft.com/UAMS/ProgramDetail/<?php echo esc_html( $content->ID ); ?>/Registration.aspx">Learn More</a></span>
+							<span class="content-item-excerpt"><?php echo wp_kses_post( $content->content ); ?> <a class="content-item-read-story" href="https://reg126.imperisoft.com/<?php echo $authacct; ?>/ProgramDetail/<?php echo esc_html( $content->ID ); ?>/Registration.aspx">Learn More</a></span>
 						</li>
 						<?php
 					}
@@ -159,7 +167,7 @@ class UAMS_Proclass_Shortcode_Calendar extends UAMS_Proclass_Shortcode_Base {
 								<div class="date"><?php echo esc_html( date( "M j", strtotime( $content->startdate ) ) ); ?></div>
 							</span>
 							<span class="meta-info">
-								<h4 class="content-item-title"><a href="https://reg126.imperisoft.com/UAMS/ProgramDetail/<?php echo esc_html( $content->ID ); ?>/Registration.aspx"><?php echo esc_html( $content->title ); ?></a></h4><span class="content-item-date"><?php echo esc_html( date( "g:i a", strtotime( $content->starttime ) ) ); ?></span> &nbsp; <span class="content-item-level">[Level: <?php echo esc_html( $content->level ); ?>]</span>
+								<h4 class="content-item-title"><a href="https://reg126.imperisoft.com/<?php echo $authacct; ?>/ProgramDetail/<?php echo esc_html( $content->ID ); ?>/Registration.aspx"><?php echo esc_html( $content->title ); ?></a></h4><span class="content-item-date"><?php echo esc_html( date( "g:i a", strtotime( $content->starttime ) ) ); ?></span> &nbsp; <span class="content-item-level">[Level: <?php echo esc_html( $content->level ); ?>]</span>
 							</span>
 						</li>
 						<?php
